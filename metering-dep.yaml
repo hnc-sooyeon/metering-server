@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metering-dep
+  namespace: hnc-metering
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metering-server
+  template:
+    metadata:
+      labels:
+        app: metering-server
+    spec:
+      containers:
+      - name: metering-server
+        image: orca-harbor.cloud.hancom.com/sooyeon/metering-server
+        imagePullPolicy: Always
+        securityContext:
+          runAsUser: 1000730000
+        ports:
+        - containerPort: 8080
