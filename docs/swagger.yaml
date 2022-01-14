@@ -13,15 +13,15 @@ info:
   title: Swagger Example API
   version: "1.0"
 paths:
-  /{namespace}/count:
+  /count/{container}:
     get:
       consumes:
       - application/json
       description: 특정기간동안 검색된 namespace
       parameters:
-      - description: namespace name
+      - description: container name
         in: path
-        name: namespace
+        name: container
         required: true
         type: string
       - description: start
@@ -42,4 +42,23 @@ paths:
         "400":
           description: ""
       summary: namespace count
+  /cpu/{container}:
+    get:
+      consumes:
+      - application/json
+      description: 현재 cpu 사용량
+      parameters:
+      - description: container name
+        in: path
+        name: container
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+      summary: cpu usage
 swagger: "2.0"

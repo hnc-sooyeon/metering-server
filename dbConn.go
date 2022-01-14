@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 
+	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -13,7 +14,7 @@ import (
 
 //const database, collection = "meteringdb", "metrics"
 
-var conn = MongoConn()
+var mongoConn = MongoConn()
 
 func MongoConn() (client *mongo.Client) {
 	credential := options.Credential{
@@ -44,7 +45,17 @@ func GetCollection() (col *mongo.Collection) {
 	database := os.Getenv("MONGO_DBNAME")
 	collection := os.Getenv("MONGO_COLLECTION")
 
-	metrics := conn.Database(database).Collection(collection)
+	metrics := mongoConn.Database(database).Collection(collection)
 
 	return metrics
+}
+
+func InfluxConn() influxdb2.Client {
+	godotenv.Load(".env")
+	influxUrl := os.Getenv("INFLUX_URL")
+	influxToken := os.Getenv("INFLUX_TOKEN")
+
+	client := influxdb2.NewClient(influxUrl, influxToken)
+
+	return client
 }

@@ -26,7 +26,8 @@ func main() {
 	docs.SwaggerInfo.BasePath = "/api"
 	api := router.Group("/api")
 	{
-		api.GET("/:namespace/count", GetCountNamespace)
+		api.GET("/count/:container", GetCountNamespace)
+		api.GET("/cpu/:container", GetCpu)
 	}
 
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))

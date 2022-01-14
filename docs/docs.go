@@ -32,7 +32,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/{namespace}/count": {
+        "/count/{container}": {
             "get": {
                 "description": "특정기간동안 검색된 namespace",
                 "consumes": [
@@ -45,8 +45,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "namespace name",
-                        "name": "namespace",
+                        "description": "container name",
+                        "name": "container",
                         "in": "path",
                         "required": true
                     },
@@ -62,6 +62,35 @@ var doc = `{
                         "description": "end",
                         "name": "end",
                         "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/cpu/{container}": {
+            "get": {
+                "description": "현재 cpu 사용량",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "cpu usage",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "container name",
+                        "name": "container",
+                        "in": "path",
                         "required": true
                     }
                 ],
