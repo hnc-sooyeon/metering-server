@@ -5,7 +5,7 @@ info:
     email: support@swagger.io
     name: API Support
     url: http://www.swagger.io/support
-  description: This is a sample server Petstore server.
+  description: metering service server
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -17,7 +17,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: 특정기간동안 검색된 namespace
+      description: 특정기간동안 검색된 container
       parameters:
       - description: container name
         in: path
@@ -41,7 +41,7 @@ paths:
           description: ""
         "400":
           description: ""
-      summary: namespace count
+      summary: container count
   /cpu/{container}:
     get:
       consumes:
@@ -61,4 +61,23 @@ paths:
         "400":
           description: ""
       summary: cpu usage
+  /memory/{container}:
+    get:
+      consumes:
+      - application/json
+      description: 현재 memory 사용량
+      parameters:
+      - description: container name
+        in: path
+        name: container
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+      summary: memory usage
 swagger: "2.0"

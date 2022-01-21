@@ -34,14 +34,14 @@ var doc = `{
     "paths": {
         "/count/{container}": {
             "get": {
-                "description": "특정기간동안 검색된 namespace",
+                "description": "특정기간동안 검색된 container",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "namespace count",
+                "summary": "container count",
                 "parameters": [
                     {
                         "type": "string",
@@ -103,6 +103,35 @@ var doc = `{
                     }
                 }
             }
+        },
+        "/memory/{container}": {
+            "get": {
+                "description": "현재 memory 사용량",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "memory usage",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "container name",
+                        "name": "container",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": ""
+                    }
+                }
+            }
         }
     }
 }`
@@ -123,7 +152,7 @@ var SwaggerInfo = swaggerInfo{
 	BasePath:    "/api",
 	Schemes:     []string{},
 	Title:       "Swagger Example API",
-	Description: "This is a sample server Petstore server.",
+	Description: "metering service server",
 }
 
 type s struct{}

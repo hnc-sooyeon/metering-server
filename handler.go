@@ -16,8 +16,8 @@ import (
 
 /* 아래 항목이 swagger에 의해 문서화 된다. */
 // HelloHandler godoc
-// @Summary namespace count
-// @Description 특정기간동안 검색된 namespace
+// @Summary container count
+// @Description 특정기간동안 검색된 container
 // @name get-string-by-int
 // @Accept json
 // @Produce json

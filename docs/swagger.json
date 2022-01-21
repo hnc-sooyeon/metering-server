@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server Petstore server.",
+        "description": "metering service server",
         "title": "Swagger Example API",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
@@ -20,14 +20,14 @@
     "paths": {
         "/count/{container}": {
             "get": {
-                "description": "특정기간동안 검색된 namespace",
+                "description": "특정기간동안 검색된 container",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "namespace count",
+                "summary": "container count",
                 "parameters": [
                     {
                         "type": "string",
@@ -71,6 +71,35 @@
                     "application/json"
                 ],
                 "summary": "cpu usage",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "container name",
+                        "name": "container",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/memory/{container}": {
+            "get": {
+                "description": "현재 memory 사용량",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "memory usage",
                 "parameters": [
                     {
                         "type": "string",
